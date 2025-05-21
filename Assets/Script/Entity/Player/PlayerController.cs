@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 
@@ -16,6 +17,8 @@ public class PlayerController : Singleton<PlayerController>
 
     Camera camera;
 
+    public float maxRayDistance = 10f;
+
     private void Awake()
     {
         stat = GetComponent<BaseStat>();
@@ -29,7 +32,18 @@ public class PlayerController : Singleton<PlayerController>
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
+
+
+
+        Move();
+        Rotate();
+        Raycast();
+    }
+
+
+    private void Move()
+    {
+        if (Input.GetKey(KeyCode.W))
         {
             transform.position += transform.forward * stat.speed * Time.deltaTime;
         }
@@ -45,7 +59,10 @@ public class PlayerController : Singleton<PlayerController>
         {
             transform.position += transform.right * stat.speed * Time.deltaTime;
         }
+    }
 
+    void Rotate()
+    {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
@@ -54,5 +71,18 @@ public class PlayerController : Singleton<PlayerController>
 
         camera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);  // 카메라 위아래 회전
         transform.Rotate(Vector3.up * mouseX);
+    }
+    void Raycast()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2 , 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, maxRayDistance))  // 최대 거리 100
+        {
+            Debug.Log("레이캐스트가 맞은 오브젝트: " + hit.collider.gameObject.name);
+
+            // 맞은 오브젝트에 대해 추가 처리 가능
+            // 예: hit.collider.gameObject.GetComponent<YourScript>() ...
+        }
     }
 }
