@@ -31,6 +31,7 @@ public class PlayerHpbar : MonoBehaviour
 
     public void HpUpdate(object evt)
     {
+        //옮겨줘야할듯?
         stat.curHp -= (int)evt;
         hpBar.fillAmount = (float)stat.curHp / (float)stat.maxHp;
     }
