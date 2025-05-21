@@ -12,20 +12,29 @@ public class Item : MonoBehaviour
     private void Awake()
     {
         name.text = data.name;
-        EventBus.Subscribe("dropItem", ShowName);
+
     }
 
 
     public void ShowName(object evt)
     {
         //Èì.. ¸À¾ø´Âµ¥?
-        EventBus.Unsubscribe("dropItem",ShowName);
+
         canvas.SetActive(true);
-        EventBus.Subscribe("dropItem", HideName);
+
     }
 
     public void HideName(object evt)
     {
         canvas.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            EventBus.Publish("PickUp", gameObject);
+            Destroy(gameObject);
+        }
     }
 }

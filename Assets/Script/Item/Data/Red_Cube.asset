@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Red_Cube
   prefab: {fileID: 468317089396100915, guid: 6bc2587a2d652e24c9307462ba949583, type: 3}
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 337e8d41988e1af46becff5c3bdc99e7, type: 3}
   stackable: 1
   maxStack: 64
   curStack: 0

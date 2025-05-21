@@ -10,7 +10,7 @@ public class ItemData : ScriptableObject
     public string name;
 
     public GameObject prefab;
-    public Image icon;
+    public Sprite icon;
 
     public bool stackable;
 
