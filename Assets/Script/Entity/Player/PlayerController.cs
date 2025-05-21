@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
+
+
+
 public class PlayerController : Singleton<PlayerController>
 {
     public BaseStat stat;

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHpbar : MonoBehaviour
 {
     public BaseStat stat;
-
+    public Image hpBar;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class PlayerHpbar : MonoBehaviour
     public void HpUpdate(object evt)
     {
         stat.curHp -= (int)evt;
+        hpBar.fillAmount = (float)stat.curHp / (float)stat.maxHp;
     }
 
 }
