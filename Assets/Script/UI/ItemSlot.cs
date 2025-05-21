@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     public ItemData data;
-    public int stack;
     public int index;
 
     public Image icon;
@@ -22,7 +21,7 @@ public class ItemSlot : MonoBehaviour
     {
         icon.gameObject.SetActive(true);
         icon.sprite = data.icon; // ? 스프라이트로 해야할거같은데
-        stackText.text = stack > 1 ? stack.ToString() : string.Empty;
+        stackText.text = data.curStack > 1 ? data.curStack.ToString() : string.Empty;
 
     }
 

@@ -12,6 +12,10 @@ public class Inventory : MonoBehaviour
 
     public GameObject slotPanel;
 
+    public int index = 0;
+    public ItemData selectData;
+
+
     private void Awake()
     {
         slots = new ItemSlot[slotPanel.transform.childCount];
@@ -25,6 +29,8 @@ public class Inventory : MonoBehaviour
 
         EventBus.Subscribe("PickUp", AddItem);
         EventBus.Subscribe("PutDown", DropItem);
+        EventBus.Subscribe("SelectItemEvent", SelectItem);
+
 
     }
 
@@ -40,7 +46,7 @@ public class Inventory : MonoBehaviour
             ItemSlot slot = GetItemStack(data);
             if (slot != null)
             {
-                slot.stack++;
+                slot.data.curStack++;
                 RefreshSlot();
                 return;
             }
@@ -50,21 +56,45 @@ public class Inventory : MonoBehaviour
         if (emptySlot != null)
         {
             emptySlot.data = data;
-            emptySlot.stack = 1;
+            emptySlot.data.curStack = 1;
             RefreshSlot();
             return;
         }
     }
+
+    void SubtractItem()
+    {
+        slots[index].data.curStack -= 1;
+
+        if (slots[index].data.curStack < 1)
+        {
+            data = null;
+            slots[index].data = null;
+
+        }
+        RefreshSlot();
+    }
     void DropItem(object obj)
     {
+        
 
+        if (slots[index].data == null) return;
+
+        data = slots[index].data;
+
+
+
+       
+        Vector3 dropPos = PlayerController.Instance.transform.right * -2f;
+        Instantiate(data.prefab, dropPos, Quaternion.identity);
+        SubtractItem();
     }
 
     ItemSlot GetItemStack(ItemData data)
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].data == data && slots[i].stack < data.maxStack)
+            if (slots[i].data == data && slots[i].data.curStack < data.maxStack)
             {
                 return slots[i];
             }
@@ -98,6 +128,12 @@ public class Inventory : MonoBehaviour
                 slots[i].Clear();
             }
         }
+    }
+
+    public void SelectItem(object obj)
+    {
+        //흠 그냥 인덱스만 들고있으면 되지않을까?
+        index = (int)obj;
     }
 }
 

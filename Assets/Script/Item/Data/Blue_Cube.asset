@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54adb43b27b155643a752a673d1f224a, type: 3}
   m_Name: Blue_Cube
   m_EditorClassIdentifier: 
-  name: Red_Cube
-  prefab: {fileID: 468317089396100915, guid: 6bc2587a2d652e24c9307462ba949583, type: 3}
+  name: BlueCube
+  prefab: {fileID: 468317089396100915, guid: 7b163fcf3632e62409c3e7d721790e1f, type: 3}
   icon: {fileID: 21300000, guid: 29ab003da383b11469048793bcef3a94, type: 3}
   stackable: 1
   maxStack: 64
-  curStack: 0
+  curStack: 1
   damage: 1
   isMining: 0
   isEating: 0

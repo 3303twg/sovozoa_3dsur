@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54adb43b27b155643a752a673d1f224a, type: 3}
   m_Name: Yellow_Cube
   m_EditorClassIdentifier: 
-  name: Red_Cube
-  prefab: {fileID: 468317089396100915, guid: 6bc2587a2d652e24c9307462ba949583, type: 3}
-  icon: {fileID: 21300000, guid: 337e8d41988e1af46becff5c3bdc99e7, type: 3}
+  name: YellowCube
+  prefab: {fileID: 468317089396100915, guid: bdf2c957a25398241ad14118f6922a87, type: 3}
+  icon: {fileID: 21300000, guid: 8e0c578c671ccd248b92e42114155e79, type: 3}
   stackable: 1
   maxStack: 64
-  curStack: 0
+  curStack: 46
   damage: 1
   isMining: 0
   isEating: 0

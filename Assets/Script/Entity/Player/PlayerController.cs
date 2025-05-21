@@ -19,6 +19,10 @@ public class PlayerController : Singleton<PlayerController>
 
     public float maxRayDistance = 10f;
 
+
+    public ItemData data;
+
+
     private void Awake()
     {
         stat = GetComponent<BaseStat>();
@@ -37,7 +41,9 @@ public class PlayerController : Singleton<PlayerController>
 
         Move();
         Rotate();
-        Raycast();
+        //Raycast();
+        SelectItem();
+        DropItem();
     }
 
 
@@ -83,6 +89,36 @@ public class PlayerController : Singleton<PlayerController>
 
             // 맞은 오브젝트에 대해 추가 처리 가능
             // 예: hit.collider.gameObject.GetComponent<YourScript>() ...
+        }
+    }
+    void SelectItem()
+    {
+        var a = Input.inputString;
+        switch (a)
+        {
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+
+                EventBus.Publish("SelectItemEvent", int.Parse(a) - 1);
+                break;
+
+        }
+    }
+
+    void DropItem()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log($"DropItem 호출됨 - {gameObject.name}");
+            EventBus.Publish("PutDown", null);
         }
     }
 }
