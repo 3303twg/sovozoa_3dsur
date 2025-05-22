@@ -12,14 +12,5 @@ public class BaseStat : MonoBehaviour
     public float jumpPower;
 
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

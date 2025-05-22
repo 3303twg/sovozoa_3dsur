@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
         EventBus.Subscribe("PickUp", AddItem);
         EventBus.Subscribe("PutDown", DropItem);
         EventBus.Subscribe("SelectItemEvent", SelectItem);
-
+        EventBus.Subscribe("UseItemEvent", UseItem);
 
     }
 
@@ -83,9 +83,7 @@ public class Inventory : MonoBehaviour
         data = slots[index].data;
 
 
-
-       
-        Vector3 dropPos = PlayerController.Instance.transform.right * -2f;
+        Vector3 dropPos = PlayerController.Instance.transform.position + PlayerController.Instance.transform.forward * 1f;
         Instantiate(data.prefab, dropPos, Quaternion.identity);
         SubtractItem();
     }
@@ -134,6 +132,18 @@ public class Inventory : MonoBehaviour
     {
         //흠 그냥 인덱스만 들고있으면 되지않을까?
         index = (int)obj;
+        
+    }
+
+    public void UseItem(object obj)
+    {
+        Debug.Log("?");
+        //회복 후
+        if(slots[index].data.isEating == true)
+        {
+            EventBus.Publish("EatEvent", slots[index].data);
+        }
+        SubtractItem();
     }
 }
 

@@ -23,6 +23,7 @@ public class ItemData : ScriptableObject
     public bool isEating;
     public int fullness;
 
+    //필요한가?
     public bool isHealing;
     public int healValue;
 

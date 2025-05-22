@@ -17,6 +17,7 @@ public class PlayerHpbar : MonoBehaviour
     {
         EventBus.Subscribe<OnDamage>(HpUpdate);
         EventBus.Subscribe("DamageEvent", HpUpdate);
+        EventBus.Subscribe("EatEvent", Eat);
     }
 
     private void OnDisable()
@@ -36,4 +37,14 @@ public class PlayerHpbar : MonoBehaviour
         hpBar.fillAmount = (float)stat.curHp / (float)stat.maxHp;
     }
 
+    public void HungerUpdate(object evt)
+    {
+        //
+    }
+    public void Eat(object evt)
+    {
+        ItemData item = (ItemData)evt;
+        HpUpdate(- item.healValue);
+        HungerUpdate(evt);
+    }
 }

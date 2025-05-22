@@ -17,10 +17,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 29ab003da383b11469048793bcef3a94, type: 3}
   stackable: 1
   maxStack: 64
-  curStack: 1
+  curStack: 2
   damage: 1
   isMining: 0
-  isEating: 0
+  isEating: 1
   fullness: 0
   isHealing: 1
   healValue: 20

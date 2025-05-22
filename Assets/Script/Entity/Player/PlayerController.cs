@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 
 
@@ -15,6 +16,7 @@ public class PlayerController : Singleton<PlayerController>
 
     float xRotation = 0f;
 
+    private Rigidbody rigidbody;
     Camera camera;
 
     public float maxRayDistance = 10f;
@@ -25,24 +27,35 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Awake()
     {
+        rigidbody = GetComponent<Rigidbody>();
         stat = GetComponent<BaseStat>();
         camera = Camera.main;
     }
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
+
+
+    private void FixedUpdate()
+    {
+        Move();
+        
+        Rotate();
+    }
+
     void Update()
     {
 
 
+        Jump();
 
-        Move();
-        Rotate();
         //Raycast();
         SelectItem();
+        UseItem();
         DropItem();
     }
 
@@ -64,6 +77,14 @@ public class PlayerController : Singleton<PlayerController>
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += transform.right * stat.speed * Time.deltaTime;
+        }
+    }
+
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigidbody.AddForce(Vector3.up * stat.jumpPower, ForceMode.Impulse);
         }
     }
 
@@ -117,8 +138,20 @@ public class PlayerController : Singleton<PlayerController>
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log($"DropItem »£√‚µ  - {gameObject.name}");
             EventBus.Publish("PutDown", null);
         }
+    }
+
+    void UseItem()
+    {
+        /*
+        Debug.Log("øÏ≈¨∏Ø æ∆¿Ã≈€ ªÁøÎ ¿·±Ò ≤Ø¿Ω");
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("??");
+            EventBus.Publish("UseItemEvent", null);
+        }
+        */
     }
 }
