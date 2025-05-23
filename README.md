@@ -14,8 +14,8 @@
 4. 따로 표기되진 않지만 1~9번 숫자를 눌러 퀵슬롯의 아이템을 선택할 수 있습니다.
 
 아이템 설명
-1. RedCube : 우클릭시 hp10감소
-2. YellowCube : 우클릭시 hp20감소
+1. RedCube : 우클릭시 hp20감소
+2. YellowCube : 우클릭시 hp10감소
 3. GreenCube : 우클릭시 hp10회복
 4. BlueCube : 우클릭시 hp20회복
 5. PortalGun : 좌클릭시 오렌지포탈, 우클릭시 블루포탈 발사
