@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1128521502156314003}
   - component: {fileID: 4977698940196670611}
   - component: {fileID: 5321264059143894483}
+  - component: {fileID: -2491575795042984849}
   m_Layer: 0
   m_Name: RedCube
   m_TagString: Item
@@ -245,87 +246,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fafb21a96d51a84d9dbfb7ea975478e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedCurve:
+  Curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: -0.00094250706
+      value: 0.0018484289
       inSlope: 0
       outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.41421163
-      value: 0.7817639
-      inSlope: 1.0942104
-      outSlope: 1.0942104
-      tangentMode: 0
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5759794
-      value: 0.79447377
-      inSlope: -0.7934317
-      outSlope: -0.7934317
-      tangentMode: 0
+      time: 0.49858624
+      value: 1.0018485
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.764991
-      value: 0.38380745
-      inSlope: -2.6863344
-      outSlope: -2.6863344
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.15863529
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8449008
-      value: 0.15510246
-      inSlope: -1.0115185
-      outSlope: -1.0115185
-      tangentMode: 0
+      time: 1.001885
+      value: 0.0036968577
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.9419472
-      value: 0.028131355
-      inSlope: -0.36272344
-      outSlope: -0.36272344
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.976831
-      value: 0.0014970182
-      inSlope: -0.52930576
-      outSlope: -0.52930576
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   duration: 3
-  startPos: {x: 0, y: 0, z: 0}
-  endPos: {x: 0, y: 0, z: 0}
+  maxHeight: 0.5
   rotateSpeed: 50
 --- !u!114 &5321264059143894483
 MonoBehaviour:
@@ -342,6 +297,19 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 11fcb871f41bfa24ebe9da79a2175340, type: 2}
   canvas: {fileID: 284470033554311120}
   name: {fileID: 8058365554832614343}
+--- !u!114 &-2491575795042984849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468317089396100915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f32d5c72b5b0d04cae780fcdefe10f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healValue: 20
 --- !u!1 &4325731133852692612
 GameObject:
   m_ObjectHideFlags: 0

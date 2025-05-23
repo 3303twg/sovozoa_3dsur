@@ -49,7 +49,7 @@ public class PortalCamera : MonoBehaviour
         portalCamera.transform.rotation = thisPortal.transform.rotation;
 
         // ¾Æ¿À ¤»¤» ÀÌ°Å ¾ÈÇÏ·Á°í ¶Ë²¿¼îÇß´Âµ¥
-        /*
+        
         if (transform.root.gameObject.name == "Blue_Portal")
         {
             if (PortalManager.OrangePortal != null)
@@ -64,7 +64,8 @@ public class PortalCamera : MonoBehaviour
                 otherPortal = PortalManager.BluePortal.transform;
             }
         }
-        */
+        
+        
 
     }
 

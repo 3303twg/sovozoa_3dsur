@@ -9,37 +9,39 @@ public class PortalBullet : MonoBehaviour
 
 
     public float speed = 1f;
-    private void Update()
+    private void FixedUpdate()
     {
+        //발사체 정면 이동
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         Debug.DrawRay(transform.position, transform.forward * 5f, Color.red, 2f);
     }
 
-    /*
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        //플레이어위치스폰이라 플레이어 겹치는거 방지
+        if(!collision.gameObject.CompareTag("Player"))
+        //if (!other.CompareTag("Player"))
         {
-            float dotResult = 0f;
-            ContactPoint lastContact = new ContactPoint();
-
-            foreach (ContactPoint contact in collision.contacts)
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, 1.0f))
             {
-                dotResult = Vector3.Dot(transform.forward, contact.normal);
-                lastContact = contact;
+                //충돌한 오브젝트를 충돌체에게 바라보게함
+                Quaternion rot = Quaternion.LookRotation(hit.normal);
+                Vector3 rotate = new Vector3(rot.eulerAngles.x, rot.eulerAngles.y, rot.eulerAngles.z);
 
+                //소환 후 이벤트 발송
+                GameObject go = Instantiate(portal, transform.position, Quaternion.Euler(rotate.x, rotate.y, rotate.z));
+                go.name = go.name.Replace("(Clone)", "");
+                EventBus.Publish("PortalCreateEvent", go);
+
+                //충돌체 파괴
+                Destroy(gameObject);
             }
-            float angle = Mathf.Acos(dotResult / (transform.forward.magnitude * lastContact.normal.magnitude)) * Mathf.Rad2Deg;
-            Vector3 rotate = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + angle, transform.eulerAngles.z);
-            GameObject go = Instantiate(portal, transform.position, Quaternion.Euler(rotate.x, rotate.y, rotate.z));
-
-            //소환 후 이벤트 발송
-            go.name = go.name.Replace("(Clone)", "");
-            EventBus.Publish("PortalCreateEvent", go);
-            Destroy(gameObject);
         }
     }
-    */
+
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
@@ -61,6 +63,8 @@ public class PortalBullet : MonoBehaviour
             }
         }
     }
+
+    */
 
 
 }

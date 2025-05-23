@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4034180501866535380}
   - component: {fileID: 4074529055730662611}
   - component: {fileID: 8408998111742063873}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   - component: {fileID: 6510529639716360833}
   - component: {fileID: 7758049223932964249}
   - component: {fileID: 8361934274591659362}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,7 +144,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6fea0e33091533f4983696e494325545, type: 2}
   m_TargetDisplay: 0
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7182802879084358044}
   - component: {fileID: 2388048395740466047}
   - component: {fileID: 2214175342947691516}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Blue_Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   - component: {fileID: 5092590241117929956}
   - component: {fileID: 3219121030016350213}
   - component: {fileID: 5264070844004859886}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

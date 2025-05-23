@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2566861401905308797}
   - component: {fileID: 3643951114241657712}
   - component: {fileID: 473964081720270513}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 6291027122692519192}
   - component: {fileID: 416147939359879684}
   - component: {fileID: 3879876524351710002}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 6189277736967870258}
   - component: {fileID: 8495878194035569059}
   - component: {fileID: 3952452009698727929}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,7 +246,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 6119c59075794aa478fb98c5126cc07c, type: 2}
   m_TargetDisplay: 0
@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 4522589932980143566}
   - component: {fileID: 5110789338256236649}
   - component: {fileID: 1245041547295524131}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Orange_Portal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

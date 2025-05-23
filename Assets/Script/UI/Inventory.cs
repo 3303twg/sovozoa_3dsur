@@ -70,6 +70,7 @@ public class Inventory : MonoBehaviour
         {
             data = null;
             slots[index].data = null;
+            PlayerController.Instance.item = null;
 
         }
         RefreshSlot();
@@ -132,18 +133,26 @@ public class Inventory : MonoBehaviour
     {
         //흠 그냥 인덱스만 들고있으면 되지않을까?
         index = (int)obj;
+        if (slots[index].data != null)
+        {
+            PlayerController.Instance.item = slots[index].data.prefab.GetComponent<Item>();
+        }
         
     }
 
+    
     public void UseItem(object obj)
     {
+        /*
         Debug.Log("?");
         //회복 후
         if(slots[index].data.isEating == true)
         {
             EventBus.Publish("EatEvent", slots[index].data);
         }
+        */
         SubtractItem();
     }
+    
 }
 

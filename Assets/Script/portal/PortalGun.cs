@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalGun : MonoBehaviour
+public class PortalGun : MonoBehaviour , IItemEffect
 {
     public GameObject Blue;
     public GameObject Orange;
 
-    [Header("카메라 참조")]
-    public Camera playerCamera;
+    private Camera playerCamera;
 
     [Header("레이 설정")]
     public float maxDistance = 100f;
@@ -17,21 +16,25 @@ public class PortalGun : MonoBehaviour
 
     private void Awake()
     {
-        playerCamera = Camera.main;
+        
     }
     void Update()
     {
+        /*
         if (Input.GetMouseButtonDown(0)) // 좌클릭
         {
             //ShootRay();
-            ShootBluePortal();
+            LeftEffect();
+            
         }
 
         if (Input.GetMouseButtonDown(1)) // 우클릭
         {
             //ShootRay();
-            ShootOrangePortal();
+            RightEffect();
+            
         }
+        */
     }
 
     void ShootRay()
@@ -69,6 +72,29 @@ public class PortalGun : MonoBehaviour
         rb.velocity = playerCamera.transform.forward * shootForce;
         
     }
+    
+    public void LeftEffect()
+    {
+        playerCamera = Camera.main;
+        //EventBus.Subscribe("UseLeftItemEvent", ShootBluePortal);
+        ShootBluePortal();
+    }
+
+    public void RightEffect()
+    {
+        playerCamera = Camera.main;
+        //EventBus.Subscribe("UseRightItemEvent", ShootOrangePortal);
+        ShootOrangePortal();
+    }
+    
+    /*
+    public override void LeftEffect()
+    {
+        base.LeftEffect();
+        Debug.Log("test");
+        //1번효과
+    }
+    */
 }
 
 

@@ -19,12 +19,45 @@ public class PlayerController : Singleton<PlayerController>
     private Rigidbody rigidbody;
     Camera camera;
 
-    public float maxRayDistance = 10f;
+    public Item item;
 
 
-    public ItemData data;
+    //test
+    [LayerName]
+    public string LayerList;
+
+    [SerializeField] private LayerMask groundMask;
 
 
+    public bool isGround;
+
+    //바닥 감지용
+    bool IsGrounded()
+    {
+        Vector3[] offsets = new Vector3[]
+        {
+        transform.forward * 0.2f,
+        -transform.forward * 0.2f,
+        transform.right * 0.2f,
+        -transform.right * 0.2f
+        };
+
+        foreach (var offset in offsets)
+        {
+            Vector3 origin = transform.position + offset;
+            if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, 1.2f, groundMask))
+            {
+                Debug.DrawRay(origin, Vector3.down * 1.2f, Color.green);
+                return true;
+            }
+            else
+            {
+                Debug.DrawRay(origin, Vector3.down * 1.2f, Color.red);
+            }
+        }
+
+        return false;
+    }
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -33,8 +66,15 @@ public class PlayerController : Singleton<PlayerController>
     }
     void Start()
     {
+        //마우스 위치 고정용 및 숨기기
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        //너 뭐냐?
+        /*
+        EventBus.Publish("LeftEffectEvent", null);
+        EventBus.Publish("RightEffectEvent", null);
+        */
     }
 
     // Update is called once per frame
@@ -43,16 +83,14 @@ public class PlayerController : Singleton<PlayerController>
     private void FixedUpdate()
     {
         Move();
-        
         Rotate();
     }
 
     void Update()
     {
-
-
+        //체크용
+        isGround = IsGrounded();
         Jump();
-
         //Raycast();
         SelectItem();
         UseItem();
@@ -62,6 +100,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Move()
     {
+        //대각방향 정규화 해야할듯?
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += transform.forward * stat.speed * Time.deltaTime;
@@ -82,7 +121,7 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rigidbody.AddForce(Vector3.up * stat.jumpPower, ForceMode.Impulse);
         }
@@ -99,19 +138,9 @@ public class PlayerController : Singleton<PlayerController>
         camera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);  // 카메라 위아래 회전
         transform.Rotate(Vector3.up * mouseX);
     }
-    void Raycast()
-    {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2 , 0));
-        RaycastHit hit;
+    
 
-        if (Physics.Raycast(ray, out hit, maxRayDistance))  // 최대 거리 100
-        {
-            Debug.Log("레이캐스트가 맞은 오브젝트: " + hit.collider.gameObject.name);
-
-            // 맞은 오브젝트에 대해 추가 처리 가능
-            // 예: hit.collider.gameObject.GetComponent<YourScript>() ...
-        }
-    }
+    //퀵슬롯 핫바
     void SelectItem()
     {
         var a = Input.inputString;
@@ -126,24 +155,44 @@ public class PlayerController : Singleton<PlayerController>
             case "7":
             case "8":
             case "9":
-
                 EventBus.Publish("SelectItemEvent", int.Parse(a) - 1);
                 break;
-
         }
     }
 
+
+    //아이템 버리기
     void DropItem()
     {
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             EventBus.Publish("PutDown", null);
         }
     }
 
+    //아이템 사용 공격 포함
     void UseItem()
     {
+        if (item != null)
+        {
+            if (item.GetComponent<IItemEffect>() != null)
+            {
+                if (Input.GetMouseButtonDown(0)) // 좌클릭
+                {
+                    //IItemEffect usable = item.GetComponent<IItemEffect>();
+
+                    item.GetComponent<IItemEffect>().LeftEffect();
+                    //item.LeftEffect();
+                    //item.GetComponent<PortalGun>().LeftEffect();
+                }
+
+                if (Input.GetMouseButtonDown(1)) // 우클릭
+                {
+                    item.GetComponent<IItemEffect>().RightEffect();
+                }
+            }
+        }
+        
         /*
         Debug.Log("우클릭 아이템 사용 잠깐 껏음");
         
